@@ -1,0 +1,37 @@
+openapi: 3.0.1
+info:
+  title: Spelling.Core.API
+  version: v1
+paths:
+  /api/Core:
+    post:
+      tags:
+        - Core
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDocForSpellingCommand'
+            example:
+              data: TGlldHV2aXNrdSBkb2t1bWVudHUgcmFzeWJvcyB0aWtyaW5pbW8gcGFzbGF1Z29zIHBhdnl6ZGluaXMgdGVrc3Rhcw==
+              email: no-reply-semantika@vdu.lt
+              fileName: pavyzdys.txt
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    NewDocForSpellingCommand:
+      type: object
+      properties:
+        data:
+          type: string
+          format: base64string
+          description: Failo duomenys užkoduoti base64string formatu
+        email:
+          type: string
+          description: El. paštas
+        fileName:
+          type: string
+          description: Failo pavadinimas (galimi formatai txt, doc, docx, odt)
+      additionalProperties: false

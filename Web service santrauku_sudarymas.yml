@@ -1,0 +1,41 @@
+openapi: 3.0.1
+info:
+  title: Summary.Core.API
+  version: v1
+paths:
+  /api/Core:
+    post:
+      tags:
+        - Core
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDocForSummaryAvailableCommand'
+            example:
+              data: TGlldHV2acWha8WzIGRva3VtZW50xbMgYXV0b21hdGluxJcgc2FudHJhdWvFsyBzdWRhcnltbyBwYXNsYXVnb3MgcGF2eXpkaW5pcyB0ZWtzdGFz
+              email: no-reply-semantika@vdu.lt
+              fileName: pavyzdys.txt
+              textKind: media
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    NewDocForSummaryAvailableCommand:
+      type: object
+      properties:
+        data:
+          type: string
+          format: base64string
+          description: Failo duomenys užkoduoti base64string formatu
+        email:
+          type: string
+          description: El. paštas
+        fileName:
+          type: string
+          description: Failo pavadinimas (galimas formatas - txt)
+        textKind:
+          type: string
+          description: Teksto rūšis (galimos reikšmės - administration, law, media)
+      additionalProperties: false
